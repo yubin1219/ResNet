@@ -7,27 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1iOccqr-3sEOq1ZijT_CZqtMNajn8LF70
 """
 
-# Commented out IPython magic to ensure Python compatibility.
 import tensorflow as tf
-import numpy as np
-import matplotlib.pyplot as plt
-# %matplotlib inline
-
-x_train, x_test = x_train/255.0 , x_test/255.0
-
-Autotune=tf.data.experimental.AUTOTUNE
-
-def image_preprocess(image,label):
-  image_ = tf.keras.layers.experimental.preprocessing.Resizing(224,224)
-  return image_,label
-
-train_dataset=tf.data.Dataset.from_tensor_slices((x_train,y_train))
-
-train_dataset=train_dataset.map(image_preprocess,num_parallel_calls=Autotune)
-
-EPOCHS=10
-num_classes=10
-learning_rate=0.001
 
 class residual_block(tf.keras.Model):
     def __init__(self, filter_out, kernel_size):
@@ -133,6 +113,8 @@ class convolutional_block(tf.keras.Model):
         
         return h
 
+    
+## ResNet 50
 inputs=tf.keras.layers.Input(shape=(224,224,3))
 
 net=tf.keras.layers.ZeroPadding2D((3,3))(inputs)
@@ -168,4 +150,3 @@ net=tf.keras.layers.Flatten()(net)
 net=tf.keras.layers.Dense(num_classes, activation='softmax')(net)
 
 model=tf.keras.Model(inputs=inputs,outputs=net)
-
