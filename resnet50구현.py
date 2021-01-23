@@ -12,16 +12,16 @@ import tensorflow as tf
 class residual_block(tf.keras.Model):
     def __init__(self, filter_out, kernel_size):
         super(residual_block, self).__init__()
-        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(1,1),activation='relu')
+        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(1,1))
         
         self.bn1 = tf.keras.layers.BatchNormalization()
-        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same',activation='relu')
+        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same')
         
         self.bn2 = tf.keras.layers.BatchNormalization()
-        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1),activation='relu')
+        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1))
         
         self.bn3 = tf.keras.layers.BatchNormalization()
-        self.shortcut = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1),activation='relu')
+        self.shortcut = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1))
         self.bn4 = tf.keras.layers.BatchNormalization()
 
     def call(self, x, training=False, mask=None):
@@ -48,13 +48,13 @@ class residual_block(tf.keras.Model):
 class identity_block(tf.keras.Model):
     def __init__(self, filter_out, kernel_size):
         super(identity_block, self).__init__()
-        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(1,1),activation='relu')
+        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(1,1))
         
         self.bn1 = tf.keras.layers.BatchNormalization()
-        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same',activation='relu')
+        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same')
         
         self.bn2 = tf.keras.layers.BatchNormalization()
-        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1),activation='relu')
+        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1))
         
         self.bn3 = tf.keras.layers.BatchNormalization()
 
@@ -79,17 +79,17 @@ class identity_block(tf.keras.Model):
 class convolutional_block(tf.keras.Model):
     def __init__(self, filter_out, kernel_size):
         super(convolutional_block, self).__init__()
-        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(2,2),activation='relu')
+        self.conv1 = tf.keras.layers.Conv2D(filter_out,(1,1),(2,2))
         
         self.bn1 = tf.keras.layers.BatchNormalization()
-        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same',activation='relu')
+        self.conv2 = tf.keras.layers.Conv2D(filter_out, kernel_size, padding='same')
         
         self.bn2 = tf.keras.layers.BatchNormalization()
-        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1),activation='relu')
+        self.conv3 = tf.keras.layers.Conv2D(4*filter_out,(1,1),(1,1))
         
         self.bn3 = tf.keras.layers.BatchNormalization()
         
-        self.shortcut = tf.keras.layers.Conv2D(4*filter_out,(1,1),(2,2),activation='relu')
+        self.shortcut = tf.keras.layers.Conv2D(4*filter_out,(1,1),(2,2))
         self.bn4 = tf.keras.layers.BatchNormalization()
         
     def call(self, x, training=False, mask=None):
@@ -118,7 +118,7 @@ class convolutional_block(tf.keras.Model):
 inputs=tf.keras.layers.Input(shape=(224,224,3))
 
 net=tf.keras.layers.ZeroPadding2D((3,3))(inputs)
-net=tf.keras.layers.Conv2D(filters=64,kernel_size=(7,7),strides=(2,2),activation='relu')(net)
+net=tf.keras.layers.Conv2D(filters=64,kernel_size=(7,7),strides=(2,2))(net)
 net=tf.keras.layers.BatchNormalization()(net)
 net=tf.nn.relu(net)
 net=tf.keras.layers.ZeroPadding2D((1,1))(net)
