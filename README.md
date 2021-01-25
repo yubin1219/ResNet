@@ -21,3 +21,6 @@ ResNet의 구조
     ![pre](https://user-images.githubusercontent.com/74402562/103435186-95d73080-4c4e-11eb-8402-bdd0048cc499.PNG)
     
     Conv-BN-ReLU구조를 BN-ReLU-Conv구조로 변경한 것으로 성능이 개선되었다. 후자의 경우 Gradient Highway가 형성되어 극적인 효과를 얻는다.
+    
+---------------    
+![resnet](https://user-images.githubusercontent.com/74402562/105661195-32b88100-5f10-11eb-8bc2-4891a8dc571f.jpeg)
