@@ -27,7 +27,7 @@ class conv_block(tf.keras.Model):
         
         h=self.bn3(h,training=training)
         h=tf.nn.relu(h)
-        h=self.conv2(h)
+        h=self.conv3(h)
 
         x_shortcut=self.bn4(x,training=training)
         x_shortcut=tf.nn.relu(x_shortcut)
